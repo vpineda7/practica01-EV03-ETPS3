@@ -1,4 +1,4 @@
-# flutter_firebase_test
+# flutter_firebase_app_database
 
 A new Flutter project.
 

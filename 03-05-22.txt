@@ -1,0 +1,18 @@
+flutter pub add cloud_firestore
+vim 30-04-22.txt
+git init 
+git add . && git commit -m "app funcional"
+git status
+curl -u vpineda7:%tokenGithub% https://api.github.com/user/repos -d "{\"name\":\"practica01-EV04-ETPS3\"}"
+curl -u vpineda7:%tokenGithub% https://api.github.com/user/repos -d "{\"name\":\"practica01-EV03-ETPS3\"}"
+git remote add origin "https://github.com/vpineda7/practica01-EV03-ETPS3"
+git remote -v
+git add . && git commit -m "repo inicial"
+git add . && git commit -m "proyecto funcional con conexion a firebase y query en consola"
+git push origin 
+git push origin master
+vim README.md
+git add . && git commit -m "proyecto funcional con conexion a firebase y query en consola"
+git push origin 
+git push origin master
+doskey /history > 03-05-22.txt

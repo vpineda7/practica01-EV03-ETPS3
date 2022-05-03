@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 List estadiosLista =[];
 
 void main() {
@@ -66,11 +67,43 @@ class _AppFluteState extends State<AppFlute> {
               itemCount: estadiosLista != null ? estadiosLista.length : 0,
               itemBuilder: (_, int index) {
                 print(estadiosLista[index]['nombre']);
-                return ListTile(
-                  leading: Icon(Icons.list),
-                  title: Text(estadiosLista[index]['nombre']),
+                return Card(
+                  elevation: 2.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      // Text(itempk.num),
+                      SizedBox(height:20),
+                       Container(
+                         padding: EdgeInsets.all(2.0),
+                         height: 250,
+                         width: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage( estadiosLista[index]['img']),
+                                fit: BoxFit.cover),
+                          ),
+                       ),
+                      SizedBox(height:10),
+                      Text("Nombre:" + estadiosLista[index]['nombre']),
+                      SizedBox(height:10),
+                      Text("Capacidad: " + estadiosLista[index]['capacidad'].toString()),
+                      
+                      // SizedBox(height:5),
+                      // Text("Color de piel: " + itempk.skin_color),
+                      // SizedBox(height:5),
+                      // Text("Año de nacimiento: " + itempk.birth_year),
+                       SizedBox(height:15),
+                    ],
+                  ),
 
-                  );
+                );
+                //  ListTile(
+                //   leading: Icon(Icons.list),
+                //   title: Text(estadiosLista[index]['nombre']),
+
+                //   );
                 
               },
         ),
@@ -83,38 +116,3 @@ class _AppFluteState extends State<AppFlute> {
 
   
 }
-
-  List<Widget> _listadoEstadiosObjects(data) {
-    List<Widget> estadioObject = [];
-    for (var itempk in data) {
-      estadioObject.add(Card(
-        elevation: 2.0,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // Text(itempk.num),
-            SizedBox(height:20),
-            Container(
-              padding: EdgeInsets.all(2.0),
-              height: 250,
-              width: 200,
-               decoration: BoxDecoration(
-                 image: DecorationImage(
-                     image: NetworkImage(itempk.img),
-                     fit: BoxFit.cover),
-               ),
-            ),
-            SizedBox(height:10),
-            Text("Nombre:" + itempk.nombre),
-            // SizedBox(height:5),
-            // Text("Color de piel: " + itempk.skin_color),
-            // SizedBox(height:5),
-            // Text("Año de nacimiento: " + itempk.birth_year),
-            // SizedBox(height:15),
-          ],
-        ),
-      ));
-    }
-    return estadioObject;
-  }

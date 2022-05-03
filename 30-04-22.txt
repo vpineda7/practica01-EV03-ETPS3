@@ -1,0 +1,1 @@
+se tienen los errores de conexion a firebase y otros de sdkmin

@@ -9,26 +9,22 @@ void main() {
 
 }
 
-@override
-void initState() {
- // super.initState();
-  getUsuario();
-  
-}
 
 void getUsuario () async {
+  List estadiosLista =[];
   CollectionReference collectionReference =  FirebaseFirestore.instance.collection('estadios');
   QuerySnapshot estadios = await collectionReference.get();
-  print("test");
-  if (estadios.docs.length !=0) {
+  if (estadios.docs.isNotEmpty) {
     for (var docu in estadios.docs){
-      print(docu.data());
+      print(docu.data());            
+      estadiosLista.add(docu.data());
+
     }
   } 
 }
 
 class FireBaseFlutter extends StatelessWidget {
-  const FireBaseFlutter({Key? key}) : super(key: key);
+  //const FireBaseFlutter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +45,14 @@ class AppFlute extends StatefulWidget {
 }
 
 class _AppFluteState extends State<AppFlute> {
+  @override
+  void initState() {
+    
+    super.initState();
+    getUsuario();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

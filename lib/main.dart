@@ -12,8 +12,7 @@ void main() {
 }
 
 
-void getEstadios () async {
-  
+void getEstadios () async {  
   CollectionReference collectionReference =  FirebaseFirestore.instance.collection('estadios');
   QuerySnapshot estadios = await collectionReference.get();
   if (estadios.docs.isNotEmpty) {
@@ -39,6 +38,8 @@ class FireBaseFlutter extends StatelessWidget {
   }
 }
 
+
+
 class AppFlute extends StatefulWidget {
   AppFlute({Key? key}) : super(key: key);
 
@@ -57,6 +58,7 @@ class _AppFluteState extends State<AppFlute> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter Estadios Firebase"),
@@ -67,9 +69,16 @@ class _AppFluteState extends State<AppFlute> {
               itemCount: estadiosLista != null ? estadiosLista.length : 0,
               itemBuilder: (_, int index) {
                 print(estadiosLista[index]['nombre']);
-                return Card(
+                //DocumentReference docRef = FirebaseFirestore.instance.doc(estadiosLista[index]['equipo']);                
+                return GestureDetector(
+                  onTap: () async {                    
+                    print(estadiosLista[index]['equipo']);
+                    DocumentReference docRef = FirebaseFirestore.instance.doc(estadiosLista[index]['equipo'].toString());
+                    
+                  },
+                  child: Card(
                   elevation: 2.0,
-                  child: Column(
+                  child: Column(                    
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -90,6 +99,7 @@ class _AppFluteState extends State<AppFlute> {
                       SizedBox(height:10),
                       Text("Capacidad: " + estadiosLista[index]['capacidad'].toString()),
                       
+                      
                       // SizedBox(height:5),
                       // Text("Color de piel: " + itempk.skin_color),
                       // SizedBox(height:5),
@@ -98,7 +108,8 @@ class _AppFluteState extends State<AppFlute> {
                     ],
                   ),
 
-                );
+                ),
+                ); 
                 //  ListTile(
                 //   leading: Icon(Icons.list),
                 //   title: Text(estadiosLista[index]['nombre']),

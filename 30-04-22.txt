@@ -1,1 +1,4 @@
 se tienen los errores de conexion a firebase y otros de sdkmin
+
+sitios de apoyo: 
+- "https://stackoverflow.com/questions/56721694/convert-firestore-documentsnapshot-to-map-in-flutter"
